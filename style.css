@@ -10,10 +10,13 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: rgb(64,64,64);
-	background-color: rgba(2, 116, 27, 0.384);
+	background-color: rgba(7, 102, 82, 1);
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
+/* background-color: rgba(2, 116, 27, 0.384); 
+background-color: rgba(7, 102, 82, 1); 
+background-color: rgb(3, 50, 139);*/
 
 /* HEADER */
 div.header {
