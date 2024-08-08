@@ -4,7 +4,7 @@ title: Building a 2-layer neural network from scratch with NumPy
 date: 2023-08-21
 ---
 
-In this post we'll build a two-layer neural network from scratch in Python using only the [NumPy](https://numpy.org) library.  The full code implementation as well as the test example and plots are contained in this Jupyter [notebook](/documents/posts/two-layer-neural-network/TwoLayerNetwork.ipynb).
+In this post we'll build a two-layer neural network from scratch in Python using only the [NumPy](https://numpy.org) library.  The full code implementation as well as the test example and plots are contained in this Jupyter [notebook](/assets/posts/two-layer-network/TwoLayerNetwork.ipynb).
 
 
 A two-layer neural network is a parametric function $$f:\mathbb{R}^{m_0} \to \mathbb{R}^{m_2}$$ of the form
@@ -48,7 +48,7 @@ A common choice is the rectified linear unit or ReLU, defined by $$\texttt{relu}
         return np.maximum(x, 0)
 {% endhighlight %}
 
-![](/images/posts/two-layer-network/relu.png)
+![](/assets/posts/two-layer-network/relu.png)
 
 
 ReLU is differentiable almost everywhere except at the point 0 at which point we need to use a subdifferential.  Here we'll set the derivative at this point to be 0 so that the derivative is the Heaviside function.
@@ -168,12 +168,16 @@ r_{ji} = \left(f(\mathbf{x}_i) - \mathbf{y}_i\right)_j \, ,
 $$
 
 with the subscript $$j$$ denoting the row or component of the vector.  Because the loss function is the mean-squared error we can write
+
+$$
 \begin{align*}
 \texttt{sum}(\mathbf{R} \odot \mathbf{R}) &= \sum_{i=1}^n \sum_{j=1}^{m_2} r_{ji}^2 \\
 &= \sum_{i=1}^n \lVert f(\mathbf{x}_i) - \mathbf{y}_i \rVert^2 \\
 &= n \cdot \ell\left(\mathbf{W}_1, \mathbf{W}_2, \mathbf{b}_1, \mathbf{b}_2; \{(\mathbf{x}_i, \mathbf{y}_i) \}_{i=1}^n \right) \, ,
 \end{align*}
-where $$\odot$$ represents element-wise multiplication and $\texttt{sum}$ is a function that sums all of the entries in the matrix.  In code this looks like: 
+$$
+
+where $$\odot$$ represents element-wise multiplication and $$\texttt{sum}$$ is a function that sums all of the entries in the matrix.  In code this looks like: 
 
 {% highlight python linenos %}
 def grad_loss(self, X, y):
@@ -197,7 +201,7 @@ To obtain the gradients of the loss function we will compute them explicitly.  F
 \nabla_{\mathbf{b}_2} \ell &= \frac{2}{n}\sum_{i=1}^n \left( f(\mathbf{x}_i) - \mathbf{y}_i \right) \, .
 \end{align*}
 </p>
-A detailed derivation of these gradients can be found [here](/documents/posts/two-layer-neural-network/gradients.pdf).
+A detailed derivation of these gradients can be found [here](/assets/posts/two-layer-network/gradients.pdf).
 
 
 To implement these in Python for a batch of training points and to avoid redundant computations define the matrices
@@ -241,7 +245,7 @@ The vectorized implementation of the gradients can be written as
 \nabla_{\mathbf{b}_2} \ell &= \frac{2}{n}\texttt{sum}\left( \mathbf{R},\ \texttt{columns} \right)\, ,
 \end{align*}
 </p>
-where the function $\texttt{sum}\left( \mathbf{A},\ \texttt{columns} \right)$ denotes the vector that is the sum of the columns of the matrix $\mathbf{A}$.
+where the function $$\texttt{sum}\left( \mathbf{A},\ \texttt{columns} \right)$$ denotes the vector that is the sum of the columns of the matrix $$\mathbf{A}$$.
 
 Equivalently with NumPy:
 {% highlight python linenos %}
@@ -252,7 +256,7 @@ grad_b1 = 2 * np.mean(V * D, axis=1)
 grad_b2 = 2 * np.mean(R, axis=1)
 {% endhighlight %}
 
-The complete `grad_loss` method is below.  Note that after computing the gradients `grad_b1` and `grad_b2` we reshape the Numpy arrays to column vectors to ensure that they are broadcasted correctly.  We also use Numpy's `mean` function as opposed to the `sum` function and then dividing by $n$, in case of potential overflow.
+The complete `grad_loss` method is below.  Note that after computing the gradients `grad_b1` and `grad_b2` we reshape the Numpy arrays to column vectors to ensure that they are broadcasted correctly.  We also use Numpy's `mean` function as opposed to the `sum` function and then dividing by $$n$$, in case of potential overflow.
 
 
 {% highlight python linenos %}
@@ -483,8 +487,8 @@ ypred = nn.predict(Xtest)
 {% endhighlight %}
 
 
-The results are shown below.  We indeed see that both the training and validation loss decrease over time and that the validation loss is only slightly higher than the training loss.  For the plot on the right we see the predictions from the test data closely match the ground truth function.  Code to generate this plot and run this example can be found in this [notebook](/documents/posts/two-layer-neural-network/TwoLayerNetwork.ipynb).
+The results are shown below.  We indeed see that both the training and validation loss decrease over time and that the validation loss is only slightly higher than the training loss.  For the plot on the right we see the predictions from the test data closely match the ground truth function.  Code to generate this plot and run this example can be found in this [notebook](/assets/posts/two-layer-network/TwoLayerNetwork.ipynb).
 
-![](/images/posts/two-layer-network/test_example_loss.png)
+![](/assets/posts/two-layer-network/test_example_loss.png)
 
 
