@@ -13,7 +13,7 @@ profile:
 news: false # includes a list of news items
 latest_posts: false
 selected_papers: false # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 ---
 
 I am currently a Senior Data Scientist within [Finastra's](https://www.finastra.com) GenAI(X) Lab working on applications of natural language processing (NLP) to the financial services industry.
