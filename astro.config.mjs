@@ -9,11 +9,9 @@ import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
-	// `site` is the production origin; `base` is the sub-path this project page
-	// is served from (https://terrencealsup.github.io/home/). To later promote
-	// this to the root URL or a custom domain, drop `base` and repoint `site`.
+	// Served at the root of the user site: https://terrencealsup.github.io/
+	// (no `base` — this repo is named <user>.github.io, so Pages serves it at /).
 	site: 'https://terrencealsup.github.io',
-	base: '/home',
 	integrations: [mdx(), sitemap(), preact()],
 	markdown: {
 		// Renders $…$ / $$…$$ to static KaTeX HTML at build time (no client JS).
