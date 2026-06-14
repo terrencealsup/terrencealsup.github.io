@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import headshot from '../assets/headshot.png';
+import { EMAIL, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="intro">
+				<div class="portrait">
+					<Image
+						class="headshot"
+						src={headshot}
+						alt="Terrence Alsup"
+						width={220}
+						height={220}
+						densities={[1, 2]}
+					/>
+					<a class="email" href={`mailto:${EMAIL}`} aria-label={`Email ${EMAIL}`}>
+						<svg
+							class="email-icon"
+							viewBox="0 0 24 24"
+							aria-hidden="true"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"
+							></path></svg
+						>
+						<span>{EMAIL}</span>
+					</a>
+				</div>
+				<div class="bio">
+					<h1>Terrence Alsup</h1>
+					<p>
+						I am currently a researcher in <a href="https://www.morganstanley.com">Morgan Stanley</a>'s
+						machine learning group. Previously, I was a senior data scientist in <a
+							href="https://www.finastra.com">Finastra</a>'s Innovation Lab. Prior to joining the
+						financial services industry, I completed my Ph.D. in Mathematics at <a
+							href="https://cims.nyu.edu/dynamic/">CIMS NYU</a> under the supervision of <a
+							href="https://cims.nyu.edu/~pehersto/">Dr. Benjamin Peherstorfer</a>, working on
+						multi-fidelity methods to speed up Bayesian inference.
+					</p>
+					<SocialLinks />
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
+
+<style>
+	.intro {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.portrait {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.6rem;
+		flex-shrink: 0;
+	}
+	.headshot {
+		border-radius: 18px;
+		box-shadow: var(--box-shadow);
+	}
+	.email {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: var(--accent);
+		text-decoration: none;
+		white-space: nowrap;
+		padding: 0.4em 0.8em;
+		border: 1px solid rgba(var(--gray), 35%);
+		border-radius: 999px;
+		transition:
+			border-color 0.15s ease,
+			background-color 0.15s ease;
+	}
+	.email:hover {
+		border-color: var(--accent);
+		background-color: rgba(var(--gray-light), 60%);
+	}
+	.email-icon {
+		width: 1.05em;
+		height: 1.05em;
+		flex-shrink: 0;
+	}
+	.bio {
+		flex: 1 1 320px;
+	}
+	.bio h1 {
+		margin-top: 0;
+	}
+	@media (max-width: 720px) {
+		.intro {
+			justify-content: center;
+			text-align: center;
+		}
+	}
+</style>

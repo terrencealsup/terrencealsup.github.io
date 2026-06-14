@@ -1,0 +1,47 @@
+---
+import { GITHUB_URL, LINKEDIN_URL, SCHOLAR_URL, CV_PATH } from '../consts';
+import { withBase } from '../utils';
+
+// Reusable row of contact links used on the home page (and available elsewhere).
+const links = [
+	{ label: 'GitHub', href: GITHUB_URL },
+	{ label: 'LinkedIn', href: LINKEDIN_URL },
+	{ label: 'Google Scholar', href: SCHOLAR_URL },
+	{ label: 'CV', href: withBase(CV_PATH) },
+];
+---
+
+<ul class="social-row">
+	{
+		links.map((link) => (
+			<li>
+				<a
+					href={link.href}
+					target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+					rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+				>
+					{link.label}
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.social-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75em 1.25em;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.social-row a {
+		text-decoration: none;
+		font-weight: 700;
+		border-bottom: 2px solid transparent;
+	}
+	.social-row a:hover {
+		border-bottom-color: var(--accent);
+	}
+</style>

@@ -1,0 +1,54 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const title = `Second Thoughts · ${SITE_TITLE}`;
+const description =
+	'Second Thoughts — Terrence Alsup organizing his thinking on topics ranging from math and prediction to sports analytics and finance.';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="construction">
+				<p class="badge">🚧 Under construction</p>
+				<h1>Second Thoughts</h1>
+				<p class="lede">
+					A blog where I try to organize my thoughts on topics ranging from math and
+					prediction to sports analytics and finance. It's still a work in progress —
+					check back soon for the first posts.
+				</p>
+			</section>
+		</main>
+	</body>
+</html>
+
+<style>
+	.construction {
+		max-width: 36rem;
+		margin: 3rem auto;
+		text-align: center;
+	}
+	.badge {
+		display: inline-block;
+		margin: 0 0 1rem;
+		padding: 0.3em 0.9em;
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		color: var(--accent);
+		background-color: rgba(var(--gray-light), 60%);
+		border: 1px solid rgba(var(--gray), 30%);
+		border-radius: 999px;
+	}
+	.lede {
+		font-size: 1.15rem;
+		color: rgb(var(--gray-dark));
+	}
+</style>

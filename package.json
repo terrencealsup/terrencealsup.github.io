@@ -1,0 +1,27 @@
+{
+  "name": "home",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "build:cv": "cd cv && latexmk -pdf -interaction=nonstopmode -halt-on-error cv.tex && cp cv.pdf ../public/cv.pdf && latexmk -c && rm -f cv.bbl cv.pdf"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/preact": "^5.1.5",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.6",
+    "katex": "^0.17.0",
+    "preact": "^10.29.2",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "sharp": "^0.34.3"
+  }
+}

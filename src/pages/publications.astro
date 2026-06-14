@@ -1,0 +1,92 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const title = `Publications · ${SITE_TITLE}`;
+const description = 'Articles and dissertation by Terrence Alsup.';
+
+const articles = [
+	{
+		authors: 'A. Maurais, <strong>T. Alsup</strong>, B. Peherstorfer, and Y. Marzouk.',
+		title:
+			'Multifidelity covariance estimation via regression on the manifold of symmetric positive definite matrices.',
+		venue: '<em>arXiv:2307.12438</em>, 2023.',
+		link: 'https://arxiv.org/abs/2307.12438',
+	},
+	{
+		authors: 'A. Maurais, <strong>T. Alsup</strong>, B. Peherstorfer, and Y. Marzouk.',
+		title: 'Multi-fidelity covariance estimation in the log-Euclidean geometry.',
+		venue: 'In <em>International Conference on Machine Learning (ICML)</em>, 2023.',
+		link: 'https://proceedings.mlr.press/v202/maurais23a.html',
+	},
+	{
+		authors: '<strong>T. Alsup</strong> and B. Peherstorfer.',
+		title:
+			'Context-aware surrogate modeling for balancing approximation and sampling costs in multi-fidelity importance sampling and Bayesian inverse problems.',
+		venue: '<em>SIAM/ASA Journal on Uncertainty Quantification</em>, 2022.',
+		link: 'https://epubs.siam.org/doi/10.1137/21M1445594',
+	},
+	{
+		authors: '<strong>T. Alsup</strong>, T. Hartland, B. Peherstorfer, and N. Petra.',
+		title:
+			'Further analysis of multilevel Stein variational gradient descent with an application to the Bayesian inference of glacier ice models.',
+		venue: '<em>arXiv:2122.03366</em>, 2022.',
+		link: 'https://arxiv.org/abs/2212.03366',
+	},
+	{
+		authors: '<strong>T. Alsup</strong>, L. Venturi, and B. Peherstorfer.',
+		title:
+			'Multilevel Stein variational gradient descent with applications to Bayesian inverse problems.',
+		venue: 'In <em>Mathematical and Scientific Machine Learning (MSML) 2021</em>, 2021.',
+		link: 'https://proceedings.mlr.press/v145/alsup22a.html',
+	},
+	{
+		authors: '<strong>T. Alsup</strong> and T. Catanach.',
+		title: 'Expected information gain estimates and Bayesian optimal experimental design.',
+		venue:
+			'In J.D. Smith and E. Galvan, editors, <em>Computer Science Research Institute Summer Proceedings 2021</em>, pages 269–282, 2021. Technical Report: SAND2022-0653R.',
+		link: 'https://www.sandia.gov/ccr/csri-summer-programs/2021-proceedings/',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Publications</h1>
+			<ol class="pubs">
+				{
+					articles.map((a) => (
+						<li>
+							<span set:html={a.authors} /> <span set:html={a.title} />{' '}
+							<span set:html={a.venue} /> <a href={a.link} target="_blank" rel="noopener noreferrer">[link]</a>
+						</li>
+					))
+				}
+			</ol>
+
+			<h2>Dissertation</h2>
+			<p>
+				<strong>T. Alsup</strong>. <em
+					>Trading off deterministic approximations and sampling in multifidelity Bayesian
+					inference</em
+				>. New York University, 2023.
+			</p>
+		</main>
+	</body>
+</html>
+
+<style>
+	.pubs {
+		padding-left: 1.2em;
+	}
+	.pubs li {
+		margin-bottom: 1.25em;
+	}
+</style>
