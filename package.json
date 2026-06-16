@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build:cv": "cd cv && latexmk -pdf -interaction=nonstopmode -halt-on-error cv.tex && cp cv.pdf ../public/cv.pdf && latexmk -c && rm -f cv.bbl cv.pdf"
+    "build:cv": "cd cv && latexmk -pdf -interaction=nonstopmode -halt-on-error resume.tex && cp resume.pdf ../public/cv.pdf && latexmk -c && rm -f resume.bbl resume.pdf"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.3",
